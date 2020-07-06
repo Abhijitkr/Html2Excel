@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/css/tableexport.css' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css2?family=Oswald:wght@500&amp;display=swap' rel='stylesheet' />
+    <title>Html to Excel</title>
+</head>
+<style>
+    body {
+        border-radius: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mainHeading {
+        background-color: #1a7343;
+        color: white;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Oswald', sans-serif;
+    }
+    
+    .mainHeading h3 {
+        position: absolute;
+        right: 15px;
+    }
+    
+    .mainHeading h3 a {
+        color: white;
+    }
+    
+    .mainHeading h3 a:hover {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.644);
+    }
+    
+    code {
+        background: #dfe6e9;
+        border: 1px solid black;
+        width: 60vw;
+        padding: 10px 0;
+        padding-left: 24vw;
+    }
+    
+    textarea {
+        width: 60vw;
+    }
+    
+    .Upload {
+        width: 170px;
+        margin-right: 10px;
+        align-items: center;
+    }
+    
+    .inputControl {
+        display: flex;
+    }
+    
+    .preview {
+        display: none;
+    }
+    
+    table,
+    .Upload,
+    textarea,
+    code,
+    #Copy {
+        margin-bottom: 10px;
+    }
+    
+    button {
+        display: flex;
+        height: 50px;
+        width: 150px;
+        justify-content: center;
+        align-items: center;
+        font-size: large;
+    }
+    
+    caption {
+        text-align: center;
+    }
+    
+    caption button {
+        display: inline;
+    }
+    
+    .csv,
+    .txt,
+    .xls {
+        margin-left: 10px;
+    }
+    
+    #Copy {
+        width: auto;
+    }
+    
+    .myBtn {
+        background-color: #1a7343;
+        border-color: #1a7343;
+        color: white;
+        font-size: large;
+        font-weight: 400;
+    }
+    
+    .myBtn:hover {
+        background-color: #19663d;
+    }
+    
+    .article {
+        display: flex;
+        background-color: black;
+        justify-content: center;
+        padding: 10px;
+        font-family: sans-serif;
+    }
+    
+    article {
+        width: 80%;
+        color: white;
+    }
+    
+    figure {
+        text-align: center;
+    }
+    
+    article h5 a:hover {
+        text-decoration: none;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        code {
+            padding-left: 5%;
+        }
+    }
+</style>
+
+<body>
+    <div class="main">
+        <nav class="mainHeading">
+            <h1>Convert your HTML table to Excel file</h1>
+            <h3>
+                <a href="https://webstar600.blogspot.com/blog-page" target="_blank">About</a>
+            </h3>
+        </nav>
+        <h2>Copy & Paste your Code Here</h2>
+        <textarea cols="30" rows="10"></textarea>
+        <div class="inputControl">
+            <button type="submit" class="btn-primary Upload">Upload your code</button>
+            <button type="submit" class="btn-danger Clear">Clear</button>
+        </div>
+        <h2 class="preview">Preview your table</h2>
+        <table border="1" width="80%"></table>
+        <h2 id="example">Example Code</h2>
+        <code id="codeCopy">
+            &lt;thead&gt;<br />
+&nbsp; &nbsp; &lt;tr&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;S.No&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Name&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Class&lt;/th&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;th&gt;Roll No.&lt;/th&gt;<br />
+&nbsp; &nbsp; &lt;/tr&gt;<br />
+&lt;/thead&gt;<br />
+&lt;tbody&gt;<br />
+&nbsp; &nbsp; &lt;tr&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;1&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;John Doe&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;6&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;1&lt;/td&gt;<br />
+&nbsp; &nbsp; &lt;/tr&gt;<br />
+&nbsp; &nbsp; &lt;tr&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;2&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;Jane Doe&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;7&lt;/td&gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;td&gt;2&lt;/td&gt;<br />
+&nbsp; &nbsp; &lt;/tr&gt;<br />
+&lt;/tbody&gt;
+        </code>
+        <button type="submit" class="btn-secondary" id="Copy" data-clipboard-target="#codeCopy">Copy the code</button>
+    </div>
+
+    <div class="article">
+        <article>
+            <h1 style="text-align: center;">Convert HTML Table to Excel [Xls/CSV] and Text [txt]</h1><br />
+            <h5>Convert Html table code into Excel and even into a txt file. Export your Html to XLS (Excel workbook), Html to CSV (Comma-Separated Values), Html to txt (Text).</h5><br />
+            <figure><img src="https://i.pinimg.com/564x/51/42/15/514215be30c934de2f62d11c3f3b904c.jpg" alt="Convert HTML Table to Excel [Xls/CSV] and Text [txt]" width="80%" height="400" />
+                <figcaption>Export Html to Excel</figcaption>
+            </figure>
+            <h2 style="text-align: center;">
+                About this Html to Excel Converter</h2><br />
+            <span style="color: #666666;">Hello, and welcome to everyone on my HTML to Excel converter. Recently I was having a problem with converting my HTML code into an excel file. We searched the whole internet and found nothing which can help me. So here, We are with the
+                converter that can convert your Html code into an Excel file.<br />
+                <br />Convert your HTML table code into Excel and even into a text file.</span><br /><br />
+            <h2 style="text-align: center;">
+                What do I mean by Exporting or Converting your HTML into Excel FIle</h2>
+            <br />
+            <ul style="text-align: left;">
+                <li><span style="color: #666666;">Html to Xls (Excel workbook)</span></li>
+                <span style="color: #666666;">
+                    </span>
+                <li><span style="color: #666666;">Html to CSV (Comma-Separated Values)</span></li>
+                <span style="color: #666666;">
+                    </span>
+                <li><span style="color: #666666;">Html to txt (Text)</span></li>
+            </ul>
+            <h2 style="text-align: center;">
+                HTML to Excel Converter free download</h2>
+            <br /><span style="color: #666666;">Yes, you heard it well. You can download your Excel file for free, whether it be in Xls or CSV, even you can download the text file for free.</span><br /><br />
+            <h2 style="text-align: center;">
+                How to use this HTML to excel converter</h2>
+            <br /><span style="color: #666666;">First of all, you need to have the HTML table code with html5 format. Don’t worry if you have any trouble with html5 go to the given an example and check the form of how your Code should look like before exporting it</span>.<br
+            />
+            <h5 style="text-align: left;">
+                <span style="color: #cccccc;"><a href="#example">Check the example</a></span></h5>
+            <br /><span style="color: #666666;">After getting the code in the given format, copy and paste it to the text area and click Upload your code.<br />
+                <br />After uploading it, you can preview your table.<br />
+                <br />If everything is correct Export your Excel file, we will recommend you to export it in CSV file. For device compatibilities.</span>
+            </br>
+        </article>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xls/0.7.6/xls.core.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".Upload").click(function() {
+                htmlCode = $("textarea").val();
+                if (htmlCode !== "" && htmlCode.includes("<tr>")) {
+                    $(".preview").css("display", "block");
+                    $("table").empty().append(htmlCode);
+                    previewTable = $("table").text();
+                    if (previewTable !== "") {
+                        $("table").tableExport({
+                            formats: ["xls", "csv", "txt"],
+                        });
+                        $("caption button").addClass("myBtn");
+                        $(".csv").attr({
+                            title: "Recommended",
+                            "data-tooltip": "tooltip"
+                        });
+                        $('[data-toggle="tooltip"]').tooltip();
+                    } else {
+                        Swal.fire({
+                            title: 'Please Upload your Code First!',
+                            showClass: {
+                                popup: 'animated fadeInDown faster'
+                            },
+                            hideClass: {
+                                popup: 'animated fadeOutUp faster'
+                            }
+                        });
+                    }
+                } else if (htmlCode == "") {
+                    Swal.fire({
+                        title: 'Please Insert Your Code!',
+                        showClass: {
+                            popup: 'animated fadeInDown faster'
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOutUp faster'
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please check your code!',
+                        footer: '<a href="#example">See the example code</a>'
+                    });
+                }
+            });
+
+            $("#Copy").click(function() {
+                $(this).text("Copied!").addClass("btn-dark").removeClass("btn-secondary");
+            });
+            $(function() {
+                new Clipboard('#Copy');
+            });
+            $(".Clear").click(function() {
+                $("textarea").val("");
+            });
+        });
+    </script>
+</body>
+
+</html>
